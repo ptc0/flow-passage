@@ -4,6 +4,7 @@ import socket
 import threading
 import configparser
 import time
+import requests
 from datetime import datetime, timedelta, timezone
 
 cwd = os.getcwd()
@@ -17,6 +18,12 @@ entries_name = []
 blocked_ips = []
 
 version = "v0.1"
+
+new_version_response = requests.get("https://raw.githubusercontent.com/ptc0/flow-passage/refs/heads/main/.latest_version")
+if new_version_response.status_code == 200:
+    new_version_response = new_version_response.content
+else:
+    new_version_response = version
 
 art = """
 ███████ ██       ██████  ██     ██     ██████   █████  ███████ ███████  █████   ██████  ███████ 
@@ -46,6 +53,9 @@ def lprint(type, message):
 print(art)
 print(f"Version: {version}")
 print("Made by github.com/ptc0\n")
+
+if version not in new_version_response:
+    lprint("WARN", f"A new update is avaliable, please update. ({version} --> {new_version_response})")
 
 if not os.path.exists(os.path.join(cwd, "logs.txt")): open(os.path.join(cwd, "logs.txt"), 'w')
 if not os.path.exists(os.path.join(cwd, "fp-config")): 
