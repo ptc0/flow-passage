@@ -54,8 +54,8 @@ print(art)
 print(f"Version: {version}")
 print("Made by github.com/ptc0\n")
 
-if version not in new_version_response:
-    lprint("WARN", f"A new update is avaliable, please update. ({version} --> {new_version_response})")
+#if version not in new_version_response:
+#    lprint("WARN", f"A new update is avaliable, please update. ({version} --> {new_version_response})")
 
 if not os.path.exists(os.path.join(cwd, "logs.txt")): open(os.path.join(cwd, "logs.txt"), 'w')
 if not os.path.exists(os.path.join(cwd, "fp-config")): 
@@ -147,9 +147,13 @@ def load_ip():
                 else:
                     lprint("WARN", f"The IP: {line} is invalid. To get rid of this message, remove this ip from client blocks.")
 
+load_entries()
+load_ip()
+
 if not len(entries_destip) > 0:
     lprint("WARN", "No entries loaded! Configure them at 'fp-config'.")
     lprint("WARN", "Server will not receive connections until any entry is added.")
+
 
 # Handling TCP Connections
 
