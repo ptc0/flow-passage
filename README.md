@@ -16,6 +16,7 @@ FlowPassage is a **lightweight server relaying solution** designed to be easier 
 
 ## Key Features
 - Simplifies exposing services over the internet without port forwarding.  
+- Works with **most protocols that use TCP or UDP under the hood.**  
 - Seamless integration with **Tailscale** or other VPN providers.  
 - Quick deployment to a VPS with minimal configuration.  
 - Flexible setup: define the machine and port you want to expose.  
@@ -25,16 +26,17 @@ FlowPassage is a **lightweight server relaying solution** designed to be easier 
 ## Supported Protocols
 
 | Protocol | Supported? |
-|----------|------------|
-| TCP      | ✅         |
-| UDP      | ✅         |
-| FTP      | ❌         |
-| SFTP     | ❌         |
-| SSH      | ❌         |
-| SMB      | ❌         |
-| HTTP     | ⚠️ Only HTTP is partially supported |
+|----------|-------------|
+| TCP      | ✅ Fully supported |
+| UDP      | ✅ Fully supported |
+| FTP      | ⚠️ Works if relayed over TCP |
+| SFTP     | ⚠️ Works if relayed over TCP |
+| SSH      | ⚠️ Works if relayed over TCP |
+| SMB      | ⚠️ Works if relayed over TCP |
+| HTTP     | ⚠️ Partially supported (native optimizations in progress) |
 
-> Note: TCP and UDP are fully supported. Other protocols may be added in future releases.
+> **Note:** FlowPassage supports most protocols that rely on TCP or UDP transport.  
+> Application-specific optimizations (like for HTTP or SSH) may be added in future releases.
 
 ---
 
